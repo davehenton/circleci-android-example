@@ -10,8 +10,6 @@
 version: 2
 jobs:
   build:
-    environment:
-      CC_TEST_REPORTER_ID: 428038e5401dc27b80a5adfb7af99d71564dec388d1177e121aff3b3819d89d4
     working_directory: ~/davehenton/circleci-android-example
     parallelism: 1
     shell: /bin/bash --login
@@ -49,17 +47,8 @@ jobs:
     # Test
     #   This would typically be a build job when using workflows, possibly combined with build
     # This is based on your 1.0 configuration file or project settings
-    - run:
-        name: Setup Code Climate test-reporter
-        command: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-    - run:
-        name: Run tests
-        command: |
-          ./cc-test-reporter before-build
-          ./gradlew build   
-          JACOCO_SOURCE_PATH=/home/circleci/davehenton/circleci-android-example/app ./cc-test-reporter format-coverage /home/circleci/davehenton/circleci-android-example/app/build/reports/jacoco/jacocoTestDebugUnitTestReport/jacocoTestDebugUnitTestReport.xml --input-type jacoco
+    - run: ./gradlew build
+    - run: ./gradlew jacocoTestReport
     # Teardown
     - store_artifacts:
         name: Store test reports
