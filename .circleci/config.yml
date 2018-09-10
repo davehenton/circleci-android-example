@@ -52,7 +52,6 @@ jobs:
     - run: chmod +x ./cc-test-reporter
     - run: ./cc-test-reporter before-build
     - run: ./gradlew jacocoTestReport
-    - run: ./cc-test-reporter after-build -d
     # Teardown
     - store_artifacts:
         name: Store test reports
@@ -70,3 +69,4 @@ jobs:
         name: Store Jacoco report
         path: app/build/reports/jacoco
         destination: tests
+    - run: JACOCO_SOURCE_PATH=/davehenton/circleci-android-example/tree/master/app/src/main/java/com/volodiachornenkyy/circleci_example ./cc-test-reporter format-coverage /home/circleci/davehenton/circleci-android-example/app/build/reports/jacoco/jacocoTestDebugUnitTestReport/jacocoTestDebugUnitTestReport.xml --input-type jacoco
