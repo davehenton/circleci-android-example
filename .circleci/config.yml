@@ -51,11 +51,15 @@ jobs:
     # This is based on your 1.0 configuration file or project settings
     - run: ./gradlew build
     - run:
-        name: Setup Code Climate test-reporter
+        name:  Download cc-test-reporter
         command: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
+          mkdir -p tmp/
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
+          chmod +x ./tmp/cc-test-reporter
+     - persist_to_workspace:
+          root: tmp
+          paths:
+            - cc-test-reporter
     - run: ./gradlew jacocoTestReport
            ./cc-test-reporter after-build
     # Teardown
