@@ -49,7 +49,7 @@ jobs:
     # This is based on your 1.0 configuration file or project settings
     - run: ./gradlew build
     - run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
-    - run: chmod +x ./tmp/cc-test-reporter
+    - run: chmod +x ./cc-test-reporter
     - run: ./cc-test-reporter before-build
     - run: ./gradlew jacocoTestReport
     - run: ./cc-test-reporter after-build -d
