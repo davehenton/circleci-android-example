@@ -50,9 +50,9 @@ jobs:
     - run: ./gradlew build
     - run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
     - run: chmod +x ./tmp/cc-test-reporter
-    - run: - ./cc-test-reporter before-build
+    - run: ./cc-test-reporter before-build
     - run: ./gradlew jacocoTestReport
-    - run: ./cc-test-reporter after-build
+    - run: ./cc-test-reporter after-build -d
     # Teardown
     - store_artifacts:
         name: Store test reports
