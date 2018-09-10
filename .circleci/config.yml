@@ -10,7 +10,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/volodia-chornenkyy/circleci-android-example
+    working_directory: ~/davehenton/circleci-android-example
     parallelism: 1
     shell: /bin/bash --login
     docker:
