@@ -59,7 +59,7 @@ jobs:
         command: |
           ./cc-test-reporter before-build
           ./gradlew build   
-          JACOCO_SOURCE_PATH=/home/circleci/davehenton/circleci-android-example/app ./cc-test-reporter format-coverage --input-type jacoco
+          JACOCO_SOURCE_PATH=/home/circleci/davehenton/circleci-android-example/app ./cc-test-reporter format-coverage /home/circleci/davehenton/circleci-android-example/app/build/reports/jacoco/jacocoTestDebugUnitTestReport/jacocoTestDebugUnitTestReport.xml --input-type jacoco
     # Teardown
     - store_artifacts:
         name: Store test reports
