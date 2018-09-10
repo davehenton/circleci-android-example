@@ -48,6 +48,9 @@ jobs:
     #   This would typically be a build job when using workflows, possibly combined with build
     # This is based on your 1.0 configuration file or project settings
     - run: ./gradlew build
+    - run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+    - run: chmod +x ./cc-test-reporter
+    - run: ./cc-test-reporter before-build
     - run: ./gradlew jacocoTestReport
     # Teardown
     - store_artifacts:
@@ -66,3 +69,5 @@ jobs:
         name: Store Jacoco report
         path: app/build/reports/jacoco
         destination: tests
+    - run: JACOCO_SOURCE_PATH=app/src/main/java ./cc-test-reporter format-coverage app/build/reports/jacoco/jacocoTestDebugUnitTestReport/jacocoTestDebugUnitTestReport.xml --input-type jacoco
+    - run: ./cc-test-reporter upload-coverage -r 428038e5401dc27b80a5adfb7af99d71564dec388d1177e121aff3b3819d89d4
