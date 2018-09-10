@@ -69,4 +69,4 @@ jobs:
         name: Store Jacoco report
         path: app/build/reports/jacoco
         destination: tests
-    - run: JACOCO_SOURCE_PATH=/davehenton/circleci-android-example/tree/master/app/src/main/java/com/volodiachornenkyy/circleci_example ./cc-test-reporter format-coverage /home/circleci/davehenton/circleci-android-example/app/build/reports/jacoco/jacocoTestDebugUnitTestReport/jacocoTestDebugUnitTestReport.xml --input-type jacoco
+    - run: JACOCO_SOURCE_PATH=/davehenton/circleci-android-example/tree/master/app/src/main/java/com/volodiachornenkyy/circleci_example ./cc-test-reporter format-coverage /home/circleci/volodiachornenkyy/circleci-android-example/app/build/reports/jacoco/jacocoTestDebugUnitTestReport/jacocoTestDebugUnitTestReport.xml --input-type jacoco
