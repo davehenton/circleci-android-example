@@ -49,19 +49,17 @@ jobs:
     # Test
     #   This would typically be a build job when using workflows, possibly combined with build
     # This is based on your 1.0 configuration file or project settings
-    - run: ./gradlew build
     - run:
-        name:  Download cc-test-reporter
+        name: Setup Code Climate test-reporter
         command: |
-          mkdir -p tmp/
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
-          chmod +x ./tmp/cc-test-reporter
-     - persist_to_workspace:
-          root: tmp
-          paths:
-            - cc-test-reporter
-    - run: ./gradlew jacocoTestReport
-           ./cc-test-reporter after-build
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+    - run:
+        name: Run tests
+        command: |
+          ./cc-test-reporter before-build
+          ./gradlew build   
+          ./cc-test-reporter after-build
     # Teardown
     - store_artifacts:
         name: Store test reports
